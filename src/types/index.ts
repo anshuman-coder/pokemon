@@ -4,6 +4,7 @@ export type RootStackParamList = {
   home: undefined
   login: undefined
   sign_up: undefined
+  pokemons: undefined
 }
 
 export type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'home'>

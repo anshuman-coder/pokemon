@@ -1,5 +1,6 @@
 import { AuthUser } from '@/types'
 import React, { createContext, FC, PropsWithChildren, useCallback, useState } from 'react'
+import * as helper from '@/lib/helper'
 
 interface UserContextSchema {
   user: AuthUser | null
@@ -22,11 +23,33 @@ const UserContextProvider: FC<PropsWithChildren> = ({
   const [user, setUser] = useState<AuthUser>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
-  const signUp = useCallback(async (values:  Omit<AuthUser, 'id'>) => {
-    console.log(values)
+  const signUp = useCallback(async (values:  Omit<AuthUser, 'id'> & { confirmPassword: string }) => {
+    if(values.confirmPassword !== values.password) {
+      return
+    }
+
+    const _user = { ...values, confirmPassword: undefined }
+
+    setIsLoading(true)
+    helper
+      .createUser(_user)
+      .then(res => setUser(res))
+      .catch(err => console.log(err, 'error'))
+      .finally(() => setIsLoading(false))
+
   }, [])
+
   const login = useCallback(async (values: Omit<AuthUser, 'id' | 'name'>) => {
-    console.log(values)
+    setIsLoading(true)
+    helper
+      .findUser('email', values.email)
+      .then(user => {
+        setUser(user)
+      })
+      .catch(err => {
+        console.log(err, 'error')
+      })
+      .finally(() => setIsLoading(false))
   }, [])
 
   return (
