@@ -1,9 +1,11 @@
-import { TextStyled } from '@/styled'
+import { SafeAreaViewStyled, TextStyled } from '@/styled'
 import React from 'react'
 
 const LoginScreen = () => {
   return (
-    <TextStyled>LoginScreen</TextStyled>
+    <SafeAreaViewStyled className='flex justify-center items-center w-full'>
+      <TextStyled>LoginScreen</TextStyled>
+    </SafeAreaViewStyled>
   )
 }
 
