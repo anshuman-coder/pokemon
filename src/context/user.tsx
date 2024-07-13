@@ -1,5 +1,5 @@
 import { AuthUser } from '@/types'
-import React, { createContext, FC, PropsWithChildren, useCallback, useContext, useState } from 'react'
+import React, { createContext, FC, PropsWithChildren, useCallback, useState } from 'react'
 
 interface UserContextSchema {
   user: AuthUser | null
@@ -42,7 +42,5 @@ const UserContextProvider: FC<PropsWithChildren> = ({
     </UserContext.Provider>
   )
 }
-
-export const useAuth = useContext(UserContext)
 
 export default UserContextProvider
