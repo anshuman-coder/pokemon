@@ -1,11 +1,24 @@
-import { SafeAreaViewStyled, TextStyled } from '@/styled'
+import { Layout, LoginForm, Logo } from '@/components'
+import { TextStyled, TouchableOpacityStyled, ViewStyled } from '@/styled'
+import { LoginScreenProps } from '@/types'
 import React from 'react'
 
-const LoginScreen = () => {
+
+const LoginScreen = ({ navigation }: LoginScreenProps) => {
   return (
-    <SafeAreaViewStyled className='flex justify-center items-center w-full'>
-      <TextStyled>LoginScreen</TextStyled>
-    </SafeAreaViewStyled>
+    <Layout>
+      <ViewStyled className='w-full flex flex-row justify-start items-center px-2'>
+        <TouchableOpacityStyled onPressOut={() => navigation.goBack()}>
+          <TextStyled className='text-lg font-semibold text-text-primary'>{`<`} Back</TextStyled>
+        </TouchableOpacityStyled>
+      </ViewStyled>
+      <ViewStyled className='mt-10'>
+        <Logo />
+      </ViewStyled>
+      <ViewStyled className='w-full flex justify-start items-start mt-4'>
+        <LoginForm navigation={navigation} />
+      </ViewStyled>
+    </Layout>
   )
 }
 

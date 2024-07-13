@@ -9,6 +9,7 @@ module.exports = {
       'colors': {
         'bg-primary': '#112D41',
         'text-primary': '#F2F5E5',
+        'button-bg': '#D4D0CD'
       }
     },
   },
