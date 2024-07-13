@@ -6,7 +6,7 @@ import React from 'react'
 
 const LoginScreen = ({ navigation }: LoginScreenProps) => {
   return (
-    <Layout>
+    <Layout className='!w-full'>
       <ViewStyled className='w-full flex flex-row justify-start items-center px-2'>
         <TouchableOpacityStyled onPressOut={() => navigation.goBack()}>
           <TextStyled className='text-lg font-semibold text-text-primary'>{`<`} Back</TextStyled>

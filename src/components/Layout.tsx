@@ -1,6 +1,7 @@
 import { SafeAreaViewStyled } from '@/styled'
 import clsx from 'clsx'
 import React, { FC, ReactNode } from 'react'
+import { ScrollView } from 'react-native'
 
 interface LayoutProps {
   children: ReactNode
@@ -12,10 +13,12 @@ const Layout: FC<LayoutProps> = ({
 }) => {
   return (
     <SafeAreaViewStyled className={clsx(
-      'flex flex-auto flex-col justify-start items-center bg-bg-primary',
+      'flex flex-1 flex-col justify-start items-center bg-bg-primary overflow-y-auto p-0 m-0',
       className
     )}>
-      { children }
+      <ScrollView style={{ width: '100%' }} contentContainerStyle={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'center', paddingVertical: 20 }}>
+        {children}
+      </ScrollView>
     </SafeAreaViewStyled>
   )
 }
