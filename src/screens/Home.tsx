@@ -1,8 +1,8 @@
-import { Layout, Logo } from '@/components'
+import { Layout, Logo, Pokemons } from '@/components'
 import { useAuth } from '@/hooks'
 import { ButtonStyled, TouchableOpacityStyled, ViewStyled } from '@/styled'
 import { HomeScreenProps } from '@/types'
-import React, { useEffect } from 'react'
+import React from 'react'
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
   
@@ -29,7 +29,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
             }
           </ViewStyled>
         ) : (
-          <></>
+          <Pokemons />
         )
       }
     </Layout>

@@ -1,7 +1,7 @@
 import { useAuth } from '@/hooks'
 import { ButtonStyled, TextInputStyled, TextStyled, TouchableOpacityStyled, ViewStyled } from '@/styled'
 import { AuthUser, LoginScreenProps } from '@/types'
-import React, { FC, useState } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 
 interface LoginFormProps {
   navigation: LoginScreenProps['navigation']
@@ -15,6 +15,14 @@ const LoginForm: FC<LoginFormProps> = ({ navigation }) => {
   })
 
   const { login } = useAuth()
+
+  const handleLogin = useCallback(async () => {
+    login(form)
+      .then(() => {
+        navigation.navigate('home')
+      })
+      .catch(err =>  console.log(err, 'err'))
+  }, [form, navigation])
 
   return (
     <ViewStyled className='w-full px-4 justify-center items-center gap-4'>
@@ -48,7 +56,7 @@ const LoginForm: FC<LoginFormProps> = ({ navigation }) => {
         <TouchableOpacityStyled
           className='w-fit bg-button-bg px-4 py-1.5 rounded-xl'
         >
-          <ButtonStyled title='Login' onPress={() => login(form)} />
+          <ButtonStyled title='Login' onPress={handleLogin} />
         </TouchableOpacityStyled>
       </ViewStyled>
       <ViewStyled className='w-full flex justify-start items-center gap-y-4'>

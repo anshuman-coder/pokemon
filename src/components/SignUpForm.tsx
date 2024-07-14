@@ -1,7 +1,7 @@
 import { useAuth } from '@/hooks'
 import { ButtonStyled, TextInputStyled, TextStyled, TouchableOpacityStyled, ViewStyled } from '@/styled'
 import { AuthUser, SignUpScreenProps } from '@/types'
-import React, { FC, useState } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 
 interface SignUpFormProps {
   navigation: SignUpScreenProps['navigation']
@@ -16,6 +16,11 @@ const SignUpForm: FC<SignUpFormProps> = ({ navigation }) => {
   })
 
   const { signUp } = useAuth()
+
+  const handleSignUp = useCallback(async () => {
+    await signUp(form)
+    navigation.navigate('home')
+  }, [form])
 
   return (
     <ViewStyled className='w-full px-6 justify-center items-center gap-4'>
@@ -68,7 +73,7 @@ const SignUpForm: FC<SignUpFormProps> = ({ navigation }) => {
         <TouchableOpacityStyled
           className='w-fit bg-button-bg px-4 py-1.5 rounded-xl'
         >
-          <ButtonStyled title='Sign Up' onPress={() => signUp(form)}/>
+          <ButtonStyled title='Sign Up' onPress={handleSignUp}/>
         </TouchableOpacityStyled>
       </ViewStyled>
       <ViewStyled className='w-full flex justify-start items-center gap-y-4'>
